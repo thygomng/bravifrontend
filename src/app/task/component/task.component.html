@@ -1,0 +1,90 @@
+<div
+  style="margin: 0.5% 5% 0% 5%; padding: 5px; border-bottom-style: solid; border-width: thin; border-bottom-color: #941E6F; width: 86%;">
+  <h1 style="line-height: 1px; font-size: 60px; color: #941e6f; font-weight: bold; padding: 8px 14px;">Create Task</h1>
+
+  <!-- breadcrumb -->
+  <ul class="breadcrumb">
+    
+  </ul>
+</div>
+
+<div
+  style="margin: 0.5% 5% 0% 5%; padding: 5px; border-bottom-style: solid; border-width: thin; border-bottom-color: #941E6F; width: 86%;">
+
+  <form style="min-width: 100% !important; display: grid;" [formGroup]="tasksForm">
+  
+      <div class="mat-elevation-z8 shadow margin-table">
+        <mat-card class="shadow margin-card">
+          <section>
+            <div class="example-button-row" >
+              <mat-form-field style="margin-right: 7px; width: 50%;"  >
+                  <mat-label >Title</mat-label>
+                <input matInput formControlName="title" required>
+                <mat-error *ngIf="isFieldInvalid('title')">
+                  Tittle is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="example-button-row" >
+              <mat-form-field style="margin-right: 7px; width: 50%;"  >
+                  <mat-label >Description</mat-label>
+                <input matInput formControlName="description" required>
+              </mat-form-field>
+            </div>
+
+            <div class="example-button-row" >
+              <mat-form-field style="margin-right: 7px; width: 50%;"  >
+                  <mat-label >Initial Date</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="initialDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="isFieldInvalid('initialDate')">
+                  Initial Date is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="example-button-row" >
+              <mat-form-field style="margin-right: 7px; width: 50%;"  >
+                  <mat-label >Final Date</mat-label>
+                  <input matInput [matDatepicker]="picker2" formControlName="finalDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                  <mat-error *ngIf="isFieldInvalid('finalDate')">
+                    Initial Date is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="example-button-row" >
+              <mat-form-field style="margin-right: 7px; width: 50%;"  >
+                  <mat-label >Time Spendend</mat-label>
+                <input matInput formControlName="timeSpended" >
+              </mat-form-field>
+            </div>
+            <div class="example-button-row" *ngIf='persistedTask != null'>
+              <mat-form-field style="margin-right: 7px; width: 20%;" >
+                <mat-label>Status</mat-label>
+                <mat-select [disabled]="disableStatus" style="background-color: #fff; color: #941e6f;" formControlName="status">
+                    <mat-option *ngFor="let status of statusList" [value]="status">
+                    {{status}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <br/><br/>
+            <button mat-flat-button color="accent" (click)="backToList()" style="margin-right: 7px;">
+              <mat-icon>keyboard_backspace</mat-icon>
+                  Back to list
+            </button>
+            <button mat-flat-button color="primary" (click)="submitCreateUpdate()" style="margin-right: 7px;">
+              <mat-icon>done_all</mat-icon>
+                  Save
+            </button>
+          </section>
+        </mat-card>  
+      </div>
+  </form>
+</div>  
